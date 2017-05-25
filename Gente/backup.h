@@ -1,57 +1,44 @@
-#pragma once   //_____________________________________________ PersonalDlg.h  
-#include "resource.h"
-
-class PersonalDlg: public Win::Dialog
+#pragma once  //______________________________________ Gente.h  
+#include "Resource.h"
+#include "PersonalDlg.h"
+class Gente : public Win::Dialog
 {
 public:
-	PersonalDlg()
+	Gente()
 	{
 	}
-	~PersonalDlg()
+	~Gente()
 	{
 	}
-private:
+protected:
 	//______ Wintempla GUI manager section begin: DO NOT EDIT AFTER THIS LINE
-	Win::Label lb1;
-	Win::Textbox tbxNombre;
-	Win::Label lb2;
-	Win::Textbox tbxEdad;
-	Win::Button btOk;
-	Win::Button bt2;
+	Win::Button btAgregar;
+	Win::XyChart xy1;
 protected:
 	Win::Gdi::Font fontArial014A;
 	void GetDialogTemplate(DLGTEMPLATE& dlgTemplate)
 	{
-		dlgTemplate.cx = Sys::Convert::PixelToDlgUnitX(319);
-		dlgTemplate.cy = Sys::Convert::PixelToDlgUnitY(83);
+		dlgTemplate.cx = Sys::Convert::PixelToDlgUnitX(469);
+		dlgTemplate.cy = Sys::Convert::PixelToDlgUnitY(250);
 		dlgTemplate.style = WS_CAPTION | WS_POPUP | WS_SYSMENU | WS_VISIBLE | DS_CENTER | DS_MODALFRAME;
 	}
 	//_________________________________________________
 	void InitializeGui()
 	{
-		lb1.Create(NULL, L"Nombre", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_WINNORMAL, 12, 10, 83, 25, hWnd, 1000);
-		tbxNombre.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | ES_WINNORMALCASE, 94, 10, 138, 25, hWnd, 1001);
-		lb2.Create(NULL, L"Edad", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_WINNORMAL, 11, 45, 84, 25, hWnd, 1002);
-		tbxEdad.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | ES_AUTOHSCROLL | ES_LEFT | ES_WINNORMALCASE, 94, 49, 97, 25, hWnd, 1003);
-		btOk.Create(NULL, L"OK", WS_CHILD | WS_TABSTOP | WS_VISIBLE | BS_PUSHBUTTON | BS_CENTER | BS_VCENTER, 242, 8, 69, 28, hWnd, 1004);
-		bt2.Create(NULL, NULL, WS_CHILD | WS_TABSTOP | WS_VISIBLE | BS_PUSHBUTTON | BS_CENTER | BS_VCENTER, 244, 49, 68, 27, hWnd, 1005);
+		this->Text = L"Gente";
+		btAgregar.Create(NULL, L"Agregar", WS_CHILD | WS_TABSTOP | WS_VISIBLE | BS_PUSHBUTTON | BS_CENTER | BS_VCENTER, 376, 39, 86, 28, hWnd, 1000);
+		xy1.Create(WS_EX_CLIENTEDGE, NULL, WS_CHILD | WS_VISIBLE, 19, 33, 294, 210, hWnd, 1001);
 		fontArial014A.Create(L"Arial", 14, false, false, false, false);
-		lb1.Font = fontArial014A;
-		tbxNombre.Font = fontArial014A;
-		lb2.Font = fontArial014A;
-		tbxEdad.Font = fontArial014A;
-		btOk.Font = fontArial014A;
-		bt2.Font = fontArial014A;
+		btAgregar.Font = fontArial014A;
+		xy1.Font = fontArial014A;
 	}
 	//_________________________________________________
-	void btOk_Click(Win::Event& e);
-	void bt2_Click(Win::Event& e);
+	void btAgregar_Click(Win::Event& e);
 	void Window_Open(Win::Event& e);
 	//_________________________________________________
 	bool EventHandler(Win::Event& e)
 	{
-		if (btOk.IsEvent(e, BN_CLICKED)) {btOk_Click(e); return true;}
-		if (bt2.IsEvent(e, BN_CLICKED)) {bt2_Click(e); return true;}
+		if (btAgregar.IsEvent(e, BN_CLICKED)) {btAgregar_Click(e); return true;}
 		return false;
 	}
 };
